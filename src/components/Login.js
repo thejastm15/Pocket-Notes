@@ -11,16 +11,15 @@ const Login = (props) => {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjRlYjc2YjE5ZDAxZDI5MGYxOWE2ZWU2In0sImlhdCI6MTY5MzE1Mjk1MX0.lXxsr7ULxb7hmIdt0mhGvWtUp_ZbQ-HAoLaEYRN_8q8"
             },body: JSON.stringify({ email : credentials.email, password:credentials.password}),
         });
         const json = await response.json()
         console.log(json)
         if (json.success){
             //save the auth-token and redirect
-            localStorage.setItem('token',json.authtoken)
-            history('/')
+            localStorage.setItem('token',json.authToken)
             props.showAlert(' Logged in Successfully','success')
+            history('/')
         }else{
             props.showAlert('Invalid Credentials','danger')
         }
